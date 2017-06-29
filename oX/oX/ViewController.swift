@@ -14,8 +14,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     var audioPlayer: AVAudioPlayer?
     var audioRecorder: AVAudioRecorder?
     
-    
-    
+    var urlSound: URL?
     
     
     @IBOutlet var recordButton: UIButton!
@@ -29,13 +28,19 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        stopButton.isEnabled = false
+
+        stopButton.isHidden = true
+        
+        recordButton.isHidden = false
+        
         let fileMgr = FileManager.default
         
         let dirPaths = fileMgr.urls(for: .documentDirectory,
                                     in: .userDomainMask)
         
         let soundFileURL = dirPaths[0].appendingPathComponent("sound.caf")
+        
+        self.urlSound = soundFileURL
         
         let recordSettings =
             [AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
@@ -70,8 +75,31 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         // Dispose of any resources that can be recreated.
     }
 
+    
+    
+    
+    //This is how to parse information between view controllers over a segue.
+    
+    var someData = "I am data from View Controller one"
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        
+        if (segue.identifier == "stopRecording"){
+
+            let playVC = segue.destination as! PlayViewController
+            
+           playVC.urlSound = urlSound
+            
+        }
+    }
+    
+    
     @IBAction func startRecording(_ sender: UIButton) {
         
+        
+        stopButton.isHidden = false
         print("The button has been pressed")
     }
     
@@ -79,8 +107,10 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
 
     @IBAction func stopRecording(_ sender: Any) {
         
-        stopButton.isEnabled = false
+        self.view.backgroundColor = UIColor.white
         recordButton.isEnabled = true
+        
+    
         
         if audioRecorder?.isRecording == true {
             audioRecorder?.stop()
@@ -92,7 +122,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
             stopButton.isEnabled = true
             recordButton.isEnabled = false
             
-            do {
+            /*do {
                 try audioPlayer = AVAudioPlayer(contentsOf:
                     (audioRecorder?.url)!)
                 audioPlayer!.delegate = self
@@ -100,15 +130,24 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
                 audioPlayer!.play()
             } catch let error as NSError {
                 print("audioPlayer error: \(error.localizedDescription)")
-            }
+            }*/
         }
         
         stopButton.isEnabled = false
+        stopButton.isHidden = true
+        recordButton.isHidden = false
         recordButton.isEnabled = true
+        
         
     }
     
     @IBAction func recordSound(_ sender: Any) {
+        
+        recordButton.isHidden = true
+        stopButton.isHidden = false
+        self.view.backgroundColor = UIColor.red
+        
+        
         
         if audioRecorder?.isRecording == false {
             stopButton.isEnabled = true

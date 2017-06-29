@@ -21,25 +21,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGu-GI-SuF">
-                                <rect key="frame" x="234" y="311" width="59" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="ic_stop_48pt"/>
-                                <connections>
-                                    <action selector="stopRecording:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2JP-vB-UoM"/>
-                                    <segue destination="O0W-SA-Lxg" kind="show" id="czo-r7-vWV"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTT-WM-R56">
-                                <rect key="frame" x="87" y="305" width="50" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTT-WM-R56">
+                                <rect key="frame" x="162" y="304" width="50" height="58"/>
                                 <state key="normal" image="ic_mic_48pt"/>
                                 <connections>
                                     <action selector="recordSound:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WWs-Zk-Yds"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGu-GI-SuF">
+                                <rect key="frame" x="158" y="310" width="59" height="46"/>
+                                <state key="normal" image="ic_stop_48pt"/>
+                                <connections>
+                                    <action selector="stopRecording:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2JP-vB-UoM"/>
+                                    <segue destination="O0W-SA-Lxg" kind="show" identifier="stopRecording" id="czo-r7-vWV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="MGu-GI-SuF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Aha-Vw-WiJ"/>
+                            <constraint firstItem="MGu-GI-SuF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="B90-cN-aLI"/>
+                            <constraint firstItem="PTT-WM-R56" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Bb0-DF-niY"/>
+                            <constraint firstItem="PTT-WM-R56" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="FQx-gO-DCu"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Record" id="Jbs-pw-Wb5"/>
                     <connections>
@@ -51,10 +55,10 @@
             </objects>
             <point key="canvasLocation" x="616.79999999999995" y="36.431784107946029"/>
         </scene>
-        <!--View Controller-->
+        <!--Play View Controller-->
         <scene sceneID="Map-Wx-X0p">
             <objects>
-                <viewController id="O0W-SA-Lxg" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlayRecordingView" id="O0W-SA-Lxg" customClass="PlayViewController" customModule="oX" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Va2-Y4-vRz"/>
                         <viewControllerLayoutGuide type="bottom" id="MYI-L6-JJ1"/>
@@ -64,12 +68,48 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Second Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WtG-Tb-8Cr">
-                                <rect key="frame" x="129" y="185" width="117" height="21"/>
+                                <rect key="frame" x="231" y="601" width="117" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbQ-u2-y5r">
+                                <rect key="frame" x="163" y="580" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="ic_stop_48pt"/>
+                                <connections>
+                                    <action selector="stopSoundPlayBack:" destination="O0W-SA-Lxg" eventType="touchUpInside" id="WyB-oI-Bi5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SIp-UP-IDX">
+                                <rect key="frame" x="74" y="123" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="slow"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vnN-Ba-MW6">
+                                <rect key="frame" x="274" y="123" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="fast"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7El-Js-KbZ">
+                                <rect key="frame" x="73" y="318" width="32" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="High"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Hj-au-Vz3">
+                                <rect key="frame" x="274" y="318" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Low"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iht-qb-d6g">
+                                <rect key="frame" x="149" y="510" width="77" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Play Sound"/>
+                                <connections>
+                                    <action selector="playSound:" destination="O0W-SA-Lxg" eventType="touchUpInside" id="ehI-hc-Eyq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -77,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="skh-O5-Gsu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1438" y="36"/>
+            <point key="canvasLocation" x="1437.5999999999999" y="35.532233883058474"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Zgh-E8-7LU">
